@@ -1,28 +1,28 @@
 using System.Collections.Generic;
 
-public class RotteManager{
+public class RotteManager {
     private List<IRottaCommerciale> rotte = new List<IRottaCommerciale>();
 
-    public void AggiungiRotta(IRottaCommerciale rotta){
+    public void AggiungiRotta(IRottaCommerciale rotta) {
         rotte.Add(rotta);
     }
 
-    public List<IRottaCommerciale> CercaPerNome(string keyword){
+    public List<IRottaCommerciale> CercaPerNome(string keyword) {
         var risultati = new List<IRottaCommerciale>();
-        foreach(var r in rotte){
-            if (r.Nome.ToLower().Contains(keyword.ToLower())){
+        foreach (var r in rotte) {
+            if (r.Nome.ToLower().Contains(keyword.ToLower())) {
                 risultati.Add(r);
             }
         }
         return risultati;
     }
 
-    public void OrdinaPerProfittoDecrescente(){
-        // Algoritmo di ordinamento (Selection Sort)
-        for (int i = 0; i < rotte.Count - 1; i++){
+    public void OrdinaPerProfittoDecrescente() {
+        // Selection Sort
+        for (int i = 0; i < rotte.Count - 1; i++) {
             int maxIndex = i;
-            for (int j = i + 1; j < rotte.Count; j++){
-                if (rotte[j].CalcolaProfitto() > rotte[maxIndex].CalcolaProfitto()){
+            for (int j = i + 1; j < rotte.Count; j++) {
+                if (rotte[j].CalcolaProfitto() > rotte[maxIndex].CalcolaProfitto()) {
                     maxIndex = j;
                 }
             }
@@ -32,7 +32,7 @@ public class RotteManager{
         }
     }
 
-    public List<IRottaCommerciale> GetRotte(){
+    public List<IRottaCommerciale> GetRotte() {
         return new List<IRottaCommerciale>(rotte);
     }
 }
